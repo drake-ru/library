@@ -1,0 +1,20 @@
+.display {
+    font-family: Arial, Helvetica, sans-serif;
+    height: auto;
+}
+
+.new-book-btn {
+    padding: 20px;
+    border-radius: 15px;
+}
+
+#form-popup {
+    display: none;
+    height: auto;
+
+}
+
+.submit-btn {
+    padding: 20px;
+    border-radius: 15px;
+}
