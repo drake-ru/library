@@ -7,29 +7,64 @@
         this.pages = pages
         this.read = read
     }
+
     
     // add a function that can take user’s input and store the new book objects into an array.
     
     function addToLibrary(book) {
+        removeBooks();
         myLibrary.push(book);
         displayBooks(myLibrary);
     }
-    
-    const list = document.querySelector('ul');
+    //Function that clears all books from the list
+    function removeBooks() {
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+            }
+        }
 
     /* Write a function that loops through the array and displays each book on the page.  */
-    //I HAVENT DONE A LOOP HERE, I'VE JUST ADDED ELEMENTS IN HTML INSTEAD, SO THEY DONT APPEAR EVERYTIME
-    
-    function displayBooks(library) {
-        let listItem = document.createElement('li');
-        list.appendChild(listItem);
-        listItem.textContent = library[library.length-1].title;
-        listItem.dataset.index = library.length-1;
+    const list = document.querySelector('ul');
 
-        //ADDING A REMOVE BUTTON
-        let removeButton = document.createElement('button');
-        removeButton.textContent = "Remove";
-        listItem.appendChild(removeButton);
+    function displayBooks(library) {
+        for (let i = 0; i < library.length; i++) {
+            let listItem = document.createElement('li');
+            list.appendChild(listItem);
+            listItem.textContent = library[i].title;
+                
+            //adding REMOVE button
+            let removeButton = document.createElement('button');
+            removeButton.textContent = "Remove";
+            listItem.appendChild(removeButton);
+
+            removeButton.addEventListener('click', () => {
+                myLibrary.splice(i, 1);
+                removeBooks();
+                displayBooks(library);
+            })
+
+            //adding READ button
+            let readButton = document.createElement('button');
+            readButton.textContent = "Unread";
+            listItem.appendChild(readButton);
+
+            if (library[i].read === "read") {
+                readButton.className = "read";
+                readButton.textContent = "Read";
+            }
+
+            readButton.addEventListener('click', () => {
+                if (library[i].read === "unread") {
+                    library[i].read = "read";
+                    readButton.className = "read";
+                    readButton.textContent = "Read";
+                } else {
+                    library[i].read = "unread";
+                    readButton.classList.remove("read");
+                    readButton.textContent = "Unread";
+                }
+            })
+        }
     }
     
      const newBookBtn = document.querySelector('.new-book-btn');
@@ -51,19 +86,9 @@
     
         let bookDetails = new Book(bookTitle, bookAuthor, bookPages, bookRead);
         addToLibrary(bookDetails);
-        addRemoveButton();
         formPopUp.style.display = "none";
         bookTitle = '';
         bookAuthor = '';
         bookPages = '';
         bookRead = '';
-        
     })
-
-    
-
-    
-    
-    //push books as list items
-    //add remove buttons to side of each
-

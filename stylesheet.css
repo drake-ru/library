@@ -3,7 +3,7 @@
     height: auto;
 }
 
-.new-book-btn {
+.new-book-btn, .submit-btn {
     padding: 20px;
     border-radius: 15px;
 }
@@ -14,7 +14,6 @@
 
 }
 
-.submit-btn {
-    padding: 20px;
-    border-radius: 15px;
+.read {
+    background-color: green;
 }
