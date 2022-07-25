@@ -73,9 +73,13 @@
     
      //NEW BOOK BUTTON
      newBookBtn.addEventListener('click', () => {
-        document.getElementById('form-popup').style.display = "block";
+        if (formPopUp.style.display === "block") {
+            formPopUp.style.display = "none";
+        } else {
+            formPopUp.style.display = "block";
         }
-     )
+    }
+    )
     //SUBMIT BUTTON
     submitBtn.addEventListener('click', () => {
     
